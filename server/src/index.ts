@@ -5,6 +5,16 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+// Type definitions
+interface FalImage {
+  url: string;
+}
+
+interface FalResponse {
+  images: FalImage[];
+  seed: number;
+}
+
 const app = express();
 const port = process.env.PORT || 5001;
 
@@ -82,7 +92,7 @@ app.post('/api/generate-image', async (req, res) => {
       throw new Error('FAL_AI_KEY is not set');
     }
 
-    const result = await fal.run('fal-ai/flux-lora', {
+    const result = await fal.run<FalResponse>('fal-ai/flux-lora', {
       input: {
         loras: [{
           path: "https://storage.googleapis.com/fal-flux-lora/825eff51241f4086bbf98e32e564c51d_pytorch_lora_weights.safetensors",
