@@ -16,17 +16,29 @@ async function handleResponse<T>(response: Response): Promise<T> {
 }
 
 export async function post<T>(endpoint: string, data: any): Promise<T> {
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
-  return handleResponse<T>(response);
+  console.log('Making POST request to:', `${API_BASE_URL}${endpoint}`);
+  try {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    return handleResponse<T>(response);
+  } catch (error) {
+    console.error('API request failed:', error);
+    throw error;
+  }
 }
 
 export async function get<T>(endpoint: string): Promise<T> {
-  const response = await fetch(`${API_BASE_URL}${endpoint}`);
-  return handleResponse<T>(response);
+  console.log('Making GET request to:', `${API_BASE_URL}${endpoint}`);
+  try {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`);
+    return handleResponse<T>(response);
+  } catch (error) {
+    console.error('API request failed:', error);
+    throw error;
+  }
 } 
