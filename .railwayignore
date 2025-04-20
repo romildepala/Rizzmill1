@@ -1,0 +1,6 @@
+# Ignore client directory and development files
+client/
+.git/
+.vscode/
+*.md
+!README.md 

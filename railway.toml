@@ -6,4 +6,7 @@ buildCommand = "npm install && npm run build"
 startCommand = "npm start"
 healthcheckPath = "/api/model-info"
 healthcheckTimeout = 100
-restartPolicyType = "on_failure" 
+restartPolicyType = "on_failure"
+
+[nixpacks]
+start = "npm start" 
